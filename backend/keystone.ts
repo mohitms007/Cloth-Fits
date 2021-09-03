@@ -7,6 +7,7 @@ import {CartItem} from './schemas/CartItem'
 import {ProductImage} from './schemas/ProductImage'
 import {withItemData, statelessSessions} from '@keystone-next/keystone/session'
 import { insertSeedData } from './seed-data';
+import { extendGraphqlSchema } from './mutations';
 const databaseURL = process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';
 
 const {withAuth} = createAuth({
@@ -56,6 +57,7 @@ export default withAuth(config({
         User, Product, ProductImage, CartItem
         // Schema items go in here
     }),
+    extendGraphqlSchema: extendGraphqlSchema,
     ui: {
         // TODO: change this for roles
         isAccessAllowed: ({session}) => {
