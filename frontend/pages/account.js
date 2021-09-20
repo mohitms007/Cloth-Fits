@@ -1,6 +1,6 @@
 export default function OrderPage() {
   return <div>
-    <p>Hello!</p>
+    <p>Account Page.</p>
   </div>
 }
 
