@@ -6,7 +6,9 @@ import { Product } from "./schemas/Product";
 import { CartItem } from "./schemas/CartItem";
 import { ProductImage } from "./schemas/ProductImage";
 import { OrderItem } from "./schemas/OrderItem";
+import { permissionsList } from "./schemas/fields";
 import { Order } from "./schemas/Order";
+import { Role } from './schemas/Role'
 import {
   withItemData,
   statelessSessions,
@@ -62,7 +64,8 @@ export default withAuth(
       ProductImage,
       CartItem,
       OrderItem, 
-      Order
+      Order,
+      Role
       // Schema items go in here
     }),
     extendGraphqlSchema: extendGraphqlSchema,
@@ -73,8 +76,6 @@ export default withAuth(
         return session?.data;
       },
     },
-    session: withItemData(statelessSessions(sessionConfig), { User: "id" }),
+    session: withItemData(statelessSessions(sessionConfig), { User: `id name email role { ${permissionsList.join(' ')} }` }),
   })
 );
-
-
