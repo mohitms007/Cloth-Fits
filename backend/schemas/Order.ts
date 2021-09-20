@@ -1,7 +1,7 @@
 import { integer, relationship, select, text, virtual } from "@keystone-next/fields";
 import { list } from "@keystone-next/keystone/schema";
 import { isSignedIn, rules } from "../access";
-import formatMoney from "../lib/formatMoney";
+import formatmoney from "../lib/formatmoney";
 
 export const Order = list({
   access: {
@@ -14,7 +14,7 @@ export const Order = list({
     label: virtual({
         graphQLReturnType: 'String',
         resolver: function(item) {
-            return `Order Summary  ${formatMoney(item.total)}`
+            return `Order Summary  ${formatmoney(item.total)}`
         } 
     }),
     total: integer(),

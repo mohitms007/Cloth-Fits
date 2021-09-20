@@ -1,4 +1,4 @@
-export default function formatMoney(amount = 0){
+export default function formatmoney(amount = 0){
 
 	const options = {
 		style: 'currency',
