@@ -17,7 +17,7 @@ const Form = styled.form`
   background: rgba(0, 0, 0, 0.02);
   border: 5px solid white;
   padding: 20px;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   line-height: 1.5;
   font-weight: 600;
   label {
@@ -29,7 +29,7 @@ const Form = styled.form`
   select {
     width: 100%;
     padding: 0.5rem;
-    font-size: 1.3rem;
+    font-size: 1rem;
     border: 1px solid black;
     &:focus {
       outline: 0;

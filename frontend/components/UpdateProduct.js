@@ -4,7 +4,7 @@ import useForm from '../lib/useForm';
 import DisplayError from './ErrorMessage';
 import Form from './styles/Form';
 
-const SINGLE_PRODUCT_QUERY = gql `
+const SINGLE_PRODUCT_QUERY = gql`
   query SINGLE_PRODUCT_QUERY($id: ID!) {
     Product(where: { id: $id }) {
       id
@@ -15,7 +15,7 @@ const SINGLE_PRODUCT_QUERY = gql `
   }
 `;
 
-const UPDATE_PRODUCT_MUTATION = gql `
+const UPDATE_PRODUCT_MUTATION = gql`
   mutation UPDATE_PRODUCT_MUTATION(
     $id: ID!
     $name: String
@@ -35,21 +35,28 @@ const UPDATE_PRODUCT_MUTATION = gql `
 `;
 
 export default function UpdateProduct({ id }) {
-    // 1. We need to get the existing product
-    const { data, error, loading } = useQuery(SINGLE_PRODUCT_QUERY, {
-        variables: { id },
-    });
-    // 2. We need to get the mutation to update the product
-    const [
-        updateProduct,
-        { data: updateData, error: updateError, loading: updateLoading },
-    ] = useMutation(UPDATE_PRODUCT_MUTATION);
-    // 2.5 Create some state for the form inputs:
-    const { inputs, handleChange, clearForm, resetForm } = useForm(data?.Product);
-    if (loading) return <p>loading...</p>;
-    // 3. We need the form to handle the updates
-    return (
-        <Form
+  // 1. We need to get the existing product
+  const { data, error, loading } = useQuery(SINGLE_PRODUCT_QUERY, {
+    variables: { id },
+  });
+  // 2. We need to get the mutation to update the product
+  const [
+    updateProduct,
+    { data: updateData, error: updateError, loading: updateLoading },
+  ] = useMutation(UPDATE_PRODUCT_MUTATION);
+  // 2.5 Create some state for the form inputs:
+  const { inputs, handleChange, clearForm, resetForm } = useForm(
+    data?.Product || {
+      name: '',
+      description: '',
+      price: '',
+    }
+  );
+  console.log(inputs);
+  if (loading) return <p>loading...</p>;
+  // 3. We need the form to handle the updates
+  return (
+    <Form
       onSubmit={async (e) => {
         e.preventDefault();
         const res = await updateProduct({
@@ -109,5 +116,5 @@ export default function UpdateProduct({ id }) {
         <button type="submit">Update Product</button>
       </fieldset>
     </Form>
-    );
+  );
 }

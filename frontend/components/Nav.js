@@ -1,9 +1,9 @@
-import Link from "next/link";
-import NavStyles from "./styles/NavStyles";
-import { useUser } from "./User";
-import { useCart } from "../lib/cartState";
-import SignOut from "./SignOut";
-import CartCount from "./CartCount";
+import Link from 'next/link';
+import { useCart } from '../lib/cartState';
+import CartCount from './CartCount';
+import SignOut from './SignOut';
+import NavStyles from './styles/NavStyles';
+import { useUser } from './User';
 
 export default function Nav() {
   const user = useUser();
@@ -19,7 +19,13 @@ export default function Nav() {
           <SignOut />
           <button type="button" onClick={openCart}>
             My Cart
-            <CartCount count={user.cart.reduce((tally, cartItem) => tally + (cartItem.product ? cartItem.quantity : 0), 0)} />
+            <CartCount
+              count={user.cart.reduce(
+                (tally, cartItem) =>
+                  tally + (cartItem.product ? cartItem.quantity : 0),
+                0
+              )}
+            />
           </button>
         </>
       )}

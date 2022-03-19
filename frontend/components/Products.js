@@ -5,7 +5,7 @@ import { perPage } from '../config';
 import Product from './Product';
 
 export const ALL_PRODUCTS_QUERY = gql`
-  query ALL_PRODUCTS_QUERY($skip: Int= 0, $first: Int){
+  query ALL_PRODUCTS_QUERY($skip: Int = 0, $first: Int) {
     allProducts(first: $first, skip: $skip) {
       id
       name
@@ -27,12 +27,12 @@ const ProductsListStyles = styled.div`
   grid-gap: 60px;
 `;
 
-export default function Products({page}) {
+export default function Products({ page }) {
   const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY, {
     variables: {
       skip: page * perPage - perPage,
-      first: perPage
-    }
+      first: perPage,
+    },
   });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import CartStyles from './styles/CartStyles';
 import CloseButton from './styles/CloseButton';
 import Supreme from './styles/Supreme';
-import formatmoney from '../lib/formatmoney';
+import formatMoney from '../lib/formatMoney';
 import { useUser } from './User';
 import calcTotalPrice from '../lib/calcTotalPrice';
 import { useCart } from '../lib/cartState';
@@ -36,9 +36,9 @@ function CartItem({ cartItem }) {
       <div>
         <h3>{product.name}</h3>
         <p>
-          {formatmoney(product.price * cartItem.quantity)}-
+          {formatMoney(product.price * cartItem.quantity)}-
           <em>
-            {cartItem.quantity} &times; {formatmoney(product.price)} each
+            {cartItem.quantity} &times; {formatMoney(product.price)} each
           </em>
         </p>
       </div>
@@ -63,7 +63,7 @@ export default function Cart() {
         ))}
       </ul>
       <footer>
-        <p>{formatmoney(calcTotalPrice(me.cart))}</p>
+        <p>{formatMoney(calcTotalPrice(me.cart))}</p>
         <Checkout />
       </footer>
     </CartStyles>

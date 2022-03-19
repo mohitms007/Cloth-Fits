@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import Head from 'next/head';
 import ErrorMessage from '../../components/ErrorMessage';
 import OrderStyles from '../../components/styles/OrderStyles';
-import formatmoney from '../../lib/formatmoney';
+import formatMoney from '../../lib/formatMoney';
 
 const SINGLE_ORDER_QUERY = gql`
   query SINGLE_ORDER_QUERY($id: ID!) {
@@ -13,10 +13,6 @@ const SINGLE_ORDER_QUERY = gql`
       total
       user {
         id
-      }
-      items1: items{
-        id
-        price
       }
       items {
         id
@@ -37,7 +33,6 @@ export default function SingleOrderPage({ query }) {
   const { data, error, loading } = useQuery(SINGLE_ORDER_QUERY, {
     variables: { id: query.id },
   });
-
   if (loading) return <p>Loading...</p>;
   if (error) return <ErrorMessage error={error} />;
   const { order } = data;
@@ -56,31 +51,25 @@ export default function SingleOrderPage({ query }) {
       </p>
       <p>
         <span>Order Total:</span>
-        <span>{formatmoney(order.total)}</span>
+        <span>{formatMoney(order.total)}</span>
       </p>
       <p>
         <span>ItemCount:</span>
         <span>{order.items.length}</span>
       </p>
       <div className="items">
-        {order.items.map((item) => {
-          console.log(item)
-          return (
-            <div className="order-item" key={item.id}>
-              <img
-                src={item.photo.image.publicUrlTransformed}
-                alt={item.title}
-              />
-              <div className="item-details">
-                <h2>{item.name}</h2>
-                <p>Qty: {item.quantity}</p>
-                <p>Each: {formatmoney(item.price)}</p>
-                <p>Sub Total: {formatmoney(item.price * item.quantity)}</p>
-                <p>{item.description}</p>
-              </div>
+        {order.items.map((item) => (
+          <div className="order-item" key={item.id}>
+            <img src={item.photo.image.publicUrlTransformed} alt={item.title} />
+            <div className="item-details">
+              <h2>{item.name}</h2>
+              <p>Qty: {item.quantity}</p>
+              <p>Each: {formatMoney(item.price)}</p>
+              <p>Sub Total: {formatMoney(item.price * item.quantity)}</p>
+              <p>{item.description}</p>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </OrderStyles>
   );

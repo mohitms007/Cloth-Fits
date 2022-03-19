@@ -12,9 +12,6 @@ const ItemStyles = styled.div`
     height: 400px;
     object-fit: cover;
   }
-   a:hover {
-    text-decoration: underline;
-  }
   p {
     line-height: 2;
     font-weight: 300;
@@ -25,15 +22,14 @@ const ItemStyles = styled.div`
   .buttonList {
     display: grid;
     width: 100%;
-    border: 1px solid var(--lightGrey);
-    border-width: 1px;
+    border-top: 1px solid var(--lightGrey);
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     grid-gap: 1px;
     background: var(--lightGrey);
     & > * {
       background: white;
       border: 0;
-      font-size: 1.2rem;
+      font-size: 1rem;
       padding: 1rem;
     }
   }

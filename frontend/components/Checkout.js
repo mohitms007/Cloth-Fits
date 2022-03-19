@@ -33,7 +33,6 @@ const CREATE_ORDER_MUTATION = gql`
       items {
         id
         name
-        price
       }
     }
   }
@@ -67,7 +66,6 @@ function CheckoutForm() {
       card: elements.getElement(CardElement),
     });
     console.log(paymentMethod);
-    console.log(error)
     // 4. Handle any errors from stripe
     if (error) {
       setError(error);
@@ -89,7 +87,7 @@ function CheckoutForm() {
         id: order.data.checkout.id,
       },
     });
-    // // 7. Close the cart
+    // 7. Close the cart
     closeCart();
 
     // 8. turn the loader off
