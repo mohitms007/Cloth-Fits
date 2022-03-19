@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import CartStyles from './styles/CartStyles';
 import CloseButton from './styles/CloseButton';
 import Supreme from './styles/Supreme';
-import formatMoney from '../lib/formatMoney';
+import formatMoney from '../lib/format';
 import { useUser } from './User';
 import calcTotalPrice from '../lib/calcTotalPrice';
 import { useCart } from '../lib/cartState';

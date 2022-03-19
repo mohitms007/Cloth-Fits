@@ -1,4 +1,4 @@
-import formatMoney from '../lib/formatMoney';
+import formatMoney from '../lib/format';
 
 describe('format Money function', () => {
   it('works with fractional dollars', () => {
